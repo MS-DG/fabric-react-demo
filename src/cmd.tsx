@@ -170,7 +170,7 @@ export class Cmd extends React.Component<{}, IKeytipsCommandBarExampleState> {
     /* tslint:disable:jsx-ban-props jsx-no-lambda */
     public render() {
         return (
-            <div style={{ height: 100 }}>
+            <div>
                 <CommandBar
                     items={[
                         {

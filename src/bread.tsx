@@ -10,6 +10,7 @@ export class BreadcrumbBasicExample extends React.Component<any, any> {
             <div>
                 <Breadcrumb
                     items={[
+                        { text: '我的文档', key: 'TestKey0', href:"#", onClick: this._onBreadcrumbItemClicked },
                         { text: '文件夹1', key: 'TestKey1', href:"#", onClick: this._onBreadcrumbItemClicked },
                         { text: '文件夹2', key: 'TestKey2', href:"#", onClick: this._onBreadcrumbItemClicked },
                         { text: '文件夹3', key: 'TestKey3', href:"#", onClick: this._onBreadcrumbItemClicked },

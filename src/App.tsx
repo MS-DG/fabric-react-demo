@@ -1,14 +1,15 @@
 import { DetailsListDocumentsExample } from "./test";
 import { Cmd } from './cmd'
 import * as React from 'react';
-
+import { FluentCustomizations } from '@uifabric/fluent-theme';
+import { Customizer } from "@uifabric/utilities";
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
+      <Customizer {...FluentCustomizations}>
         <Cmd />
         <DetailsListDocumentsExample />
-      </div>
+      </Customizer>
     );
   }
 }

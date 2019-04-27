@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
 import { DetailsListLayoutMode, Selection, SelectionMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { MarqueeSelection } from 'office-ui-fabric-react/lib/MarqueeSelection';
@@ -10,6 +8,8 @@ import { ShimmeredDetailsList } from 'office-ui-fabric-react/lib/ShimmeredDetail
 import { IconButton, PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import Dialog, { DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
+import { Stack, StackItem } from 'office-ui-fabric-react';
+
 const classNames = mergeStyleSets({
     fileIconHeaderIcon: {
         padding: 0,
@@ -33,17 +33,22 @@ const classNames = mergeStyleSets({
         maxHeight: '16px',
         maxWidth: '16px'
     },
-    controlWrapper: {
-        display: 'flex',
-        flexWrap: 'wrap'
-    },
-    exampleToggle: {
-        display: 'inline-block',
-        marginBottom: '10px',
-        marginRight: '30px'
-    },
     selectionDetails: {
         marginBottom: '20px'
+    },
+    fileList: {
+        width: "100%",
+        selectors: {
+            '@media(min-width: 1024px)': {
+                width: "90%"
+            },
+            '@media(min-width: 1366px)': {
+                width: "80%"
+            },
+            '@media(min-width: 1920px)': {
+                width: 1200
+            }
+        }
     }
 });
 // const controlStyles = {
@@ -105,8 +110,8 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
                 key: 'column2',
                 name: '文件名',
                 fieldName: 'name',
-                minWidth: 210,
-                maxWidth: 350,
+                minWidth: 150,
+                maxWidth: 500,
                 isRowHeader: true,
                 isResizable: true,
                 isSorted: true,
@@ -122,7 +127,7 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
                 name: '修改日期',
                 fieldName: 'dateModifiedValue',
                 minWidth: 70,
-                maxWidth: 90,
+                maxWidth: 100,
                 isResizable: true,
                 onColumnClick: this._onColumnClick,
                 data: 'number',
@@ -136,7 +141,7 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
                 name: '作者',
                 fieldName: 'modifiedBy',
                 minWidth: 70,
-                maxWidth: 90,
+                maxWidth: 100,
                 isResizable: true,
                 isCollapsible: true,
                 data: 'string',
@@ -237,27 +242,33 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
 
         return (
             <Fabric>
-                <MessageBar messageBarType={MessageBarType.info}>{selectionDetails}</MessageBar>
-                <BreadcrumbBasicExample></BreadcrumbBasicExample>
+                <Stack maxWidth="100%">
+                    <StackItem align="auto">
+                        <MessageBar messageBarType={MessageBarType.info}>{selectionDetails}</MessageBar>
+                    </StackItem>
+                    <StackItem align="center" className={classNames.fileList}>
+                        <BreadcrumbBasicExample></BreadcrumbBasicExample>
 
-                <MarqueeSelection selection={this._selection}>
-                    <ShimmeredDetailsList
-                        enableShimmer={!loaded}
-                        items={items}
-                        compact={isCompactMode}
-                        columns={columns}
-                        selectionMode={isModalSelection ? SelectionMode.multiple : SelectionMode.none}
-                        setKey="set"
-                        layoutMode={DetailsListLayoutMode.justified}
-                        isHeaderVisible={true}
-                        selection={this._selection}
-                        selectionPreservedOnEmptyClick={true}
-                        onItemInvoked={this._onItemInvoked}
-                        enterModalSelectionOnTouch={true}
-                        ariaLabelForSelectionColumn="Toggle selection"
-                        ariaLabelForSelectAllCheckbox="Toggle selection for all items"
-                    />
-                </MarqueeSelection>
+                        <MarqueeSelection selection={this._selection}>
+                            <ShimmeredDetailsList
+                                enableShimmer={!loaded}
+                                items={items}
+                                compact={isCompactMode}
+                                columns={columns}
+                                selectionMode={isModalSelection ? SelectionMode.multiple : SelectionMode.none}
+                                setKey="set"
+                                layoutMode={DetailsListLayoutMode.justified}
+                                isHeaderVisible={true}
+                                selection={this._selection}
+                                selectionPreservedOnEmptyClick={true}
+                                onItemInvoked={this._onItemInvoked}
+                                enterModalSelectionOnTouch={true}
+                                ariaLabelForSelectionColumn="Toggle selection"
+                                ariaLabelForSelectAllCheckbox="Toggle selection for all items"
+                            />
+                        </MarqueeSelection>
+                    </StackItem>
+                </Stack>
                 <Dialog
                     hidden={this.state.hideDialog}
                     onDismiss={this._closeDialog}
