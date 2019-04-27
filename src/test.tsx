@@ -51,13 +51,6 @@ const classNames = mergeStyleSets({
         }
     }
 });
-// const controlStyles = {
-//     root: {
-//         margin: '0 30px 20px 0',
-//         maxWidth: '300px'
-//     }
-// };
-
 export interface IDetailsListDocumentsExampleState {
     columns: IColumn[];
     items: IDocument[];
@@ -244,11 +237,10 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
             <Fabric>
                 <Stack maxWidth="100%">
                     <StackItem align="auto">
-                        <MessageBar messageBarType={MessageBarType.info}>{selectionDetails}</MessageBar>
+                        {selectionDetails && <MessageBar messageBarType={MessageBarType.info}>{selectionDetails}</MessageBar>}
                     </StackItem>
                     <StackItem align="center" className={classNames.fileList}>
                         <BreadcrumbBasicExample></BreadcrumbBasicExample>
-
                         <MarqueeSelection selection={this._selection}>
                             <ShimmeredDetailsList
                                 enableShimmer={!loaded}
@@ -320,7 +312,7 @@ export class DetailsListDocumentsExample extends React.Component<{}, IDetailsLis
 
         switch (selectionCount) {
             case 0:
-                return 'No items selected';
+                return '';
             case 1:
                 return '1 item selected: ' + (this._selection.getSelection()[0] as IDocument).name;
             default:
