@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://ms-dg.github.io/fabric-react-demo/",
   "dependencies": {
     "@types/jest": "24.0.11",
     "@types/node": "11.13.8",
