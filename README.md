@@ -1,5 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## create this project from scratch
+1. create react app
+```
+npm create react-app app --typescript
+```
+2. install fabric & fluent-theme
+```
+cd app 
+npm i office-ui-fabric-react @uifabric/fluent-theme
+```
+3. edit src/
+chose components from <https://developer.microsoft.com/en-us/fabric#/components>
+
 ## Available Scripts
 
 In the project directory, you can run:
